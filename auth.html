@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KitMat – Acceso | Registro e Inicio de Sesión</title>
+  <meta name="description" content="Accede o regístrate en KitMat, la plataforma educativa de matemáticas del Dr. Cornio. Inicia sesión o crea tu cuenta para continuar tu aventura matemática.">
+
+  <!-- Google Fonts: Inter + Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- GSAP 3.12.5 CDN (sin defer) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- App JS (diferido) -->
+  <script src="app.js" defer></script>
+</head>
+<body class="cosmic-bg">
+
+  <!-- Canvas de partículas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Overlay de KitMat -->
+  <div id="kitmat-overlay"></div>
+
+  <!-- Capa de contenido principal -->
+  <div class="content-layer">
+
+    <!-- ── Enlace de regreso ── -->
+    <a href="index.html" class="back-link"><span>←</span> Volver al inicio</a>
+
+    <!-- ── Orbes de fondo (profundidad visual) ── -->
+    <div class="auth-orb" style="width:300px;height:300px;background:rgba(107,33,168,0.25);top:-50px;left:-80px;--orb-dur:9s;--orb-tx:30px;--orb-ty:40px;"></div>
+    <div class="auth-orb" style="width:250px;height:250px;background:rgba(29,78,216,0.20);bottom:10%;right:-60px;--orb-dur:11s;--orb-tx:-25px;--orb-ty:-35px;"></div>
+    <div class="auth-orb" style="width:180px;height:180px;background:rgba(14,116,144,0.18);top:40%;left:10%;--orb-dur:7s;--orb-tx:15px;--orb-ty:20px;"></div>
+    <div class="auth-orb" style="width:200px;height:200px;background:rgba(139,92,246,0.15);bottom:20%;left:20%;--orb-dur:13s;--orb-tx:-20px;--orb-ty:-15px;"></div>
+    <div class="auth-orb" style="width:150px;height:150px;background:rgba(250,204,21,0.08);top:20%;right:15%;--orb-dur:10s;--orb-tx:10px;--orb-ty:25px;"></div>
+    <div class="auth-orb" style="width:220px;height:220px;background:rgba(249,115,22,0.10);top:60%;right:5%;--orb-dur:8s;--orb-tx:-15px;--orb-ty:-20px;"></div>
+
+    <!-- ── Dr. Cornio – Flanco izquierdo ── -->
+    <div class="auth-cornio auth-cornio-left">
+      <img src="assets/images/cornio_tube_clean.png" alt="Doctor Cornio" class="cornio-float">
+      <span class="auth-cornio-caption">¡La ciencia te espera!</span>
+    </div>
+
+    <!-- ── Dr. Cornio – Flanco derecho ── -->
+    <div class="auth-cornio auth-cornio-right">
+      <img src="assets/images/cornio_idea_clean.png" alt="Doctor Cornio" class="cornio-float" style="animation-delay:1.2s">
+      <span class="auth-cornio-caption">¡Aprende con el Dr. Cornio!</span>
+    </div>
+
+    <!-- ── Contenedor principal de autenticación ── -->
+    <div class="auth-page">
+
+      <!-- Tarjeta de autenticación -->
+      <div id="auth-card" class="auth-card glass-strong" style="opacity:0;">
+
+        <!-- A. Encabezado con logo -->
+        <div style="text-align:center;margin-bottom:1.75rem;">
+          <img
+            src="assets/images/kitmat_logo_clean.png"
+            alt="KitMat"
+            style="width:72px;height:72px;object-fit:contain;margin:0 auto 0.75rem;display:block;"
+          >
+          <h1 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:-0.03em;color:#f8fafc;margin-bottom:0.25rem;">KitMat</h1>
+          <p style="font-size:0.8125rem;color:var(--color-text-muted);">Accede para continuar tu aventura matemática</p>
+        </div>
+
+        <!-- B. Banner de error -->
+        <div id="auth-error-banner" role="alert">
+          <span>⚠️</span>
+          <span id="auth-error-msg">Por favor corrige los errores antes de continuar.</span>
+        </div>
+
+        <!-- C. Barra de pestañas -->
+        <div id="tab-bar" class="tab-bar" role="tablist">
+          <div id="tab-indicator" class="tab-indicator"></div>
+          <button class="tab-btn active" role="tab" aria-selected="true">Registrarse</button>
+          <button class="tab-btn" role="tab" aria-selected="false">Iniciar Sesión</button>
+        </div>
+
+        <!-- D. Panel de Registro -->
+        <div id="panel-signup" class="form-panel">
+
+          <!-- Nombre + Apellido (2 columnas) -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.875rem;">
+            <div class="input-group">
+              <label class="input-label" for="input-nombre">Nombre</label>
+              <input
+                id="input-nombre"
+                class="input-field"
+                type="text"
+                placeholder="Ana"
+                autocomplete="given-name"
+                data-validate="nombre"
+              >
+              <span id="helper-nombre" class="input-helper"></span>
+            </div>
+            <div class="input-group">
+              <label class="input-label" for="input-apellido">Apellido</label>
+              <input
+                id="input-apellido"
+                class="input-field"
+                type="text"
+                placeholder="García"
+                autocomplete="family-name"
+                data-validate="apellido"
+              >
+              <span id="helper-apellido" class="input-helper"></span>
+            </div>
+          </div>
+
+          <!-- Usuario -->
+          <div class="input-group">
+            <label class="input-label" for="input-usuario">Usuario</label>
+            <input
+              id="input-usuario"
+              class="input-field"
+              type="text"
+              placeholder="mi_usuario_123"
+              autocomplete="username"
+              data-validate="usuario"
+              maxlength="20"
+            >
+            <span id="helper-usuario" class="input-helper"></span>
+          </div>
+
+          <!-- Número de Cédula -->
+          <div class="input-group">
+            <label class="input-label" for="input-cedula">Número de Cédula</label>
+            <input
+              id="input-cedula"
+              class="input-field"
+              type="text"
+              placeholder="1234567890"
+              inputmode="numeric"
+              maxlength="10"
+              data-validate="cedula"
+            >
+            <span id="helper-cedula" class="input-helper"></span>
+          </div>
+
+          <!-- Correo Electrónico -->
+          <div class="input-group">
+            <label class="input-label" for="input-email">Correo Electrónico</label>
+            <input
+              id="input-email"
+              class="input-field"
+              type="email"
+              placeholder="correo@ejemplo.com"
+              autocomplete="email"
+              data-validate="email"
+            >
+            <span id="helper-email" class="input-helper"></span>
+          </div>
+
+          <!-- Contraseña con medidor de fortaleza y botón de visibilidad -->
+          <div class="input-group">
+            <label class="input-label" for="input-pass-signup">Contraseña</label>
+            <div class="pw-wrap">
+              <input
+                id="input-pass-signup"
+                class="input-field"
+                type="password"
+                placeholder="Mín. 8 caracteres"
+                autocomplete="new-password"
+                data-validate="contrasena"
+                data-pw-strength
+                style="padding-right:3rem;"
+              >
+              <button type="button" class="pw-toggle" aria-label="Mostrar contraseña">
+                <!-- Ícono de ojo -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </button>
+            </div>
+            <!-- Barra de fortaleza de contraseña -->
+            <div class="strength-bar">
+              <div class="strength-seg"></div>
+              <div class="strength-seg"></div>
+              <div class="strength-seg"></div>
+              <div class="strength-seg"></div>
+            </div>
+            <span id="helper-contrasena" class="input-helper"></span>
+          </div>
+
+          <!-- Botón de registro y enlace a inicio de sesión -->
+          <button id="btn-signup" class="btn btn-primary btn-full" style="margin-top:0.5rem;">Registrarse →</button>
+          <p style="text-align:center;margin-top:1.25rem;font-size:0.8125rem;color:var(--color-text-muted);">
+            ¿Ya tienes cuenta?
+            <a id="switch-to-login" href="#" style="color:var(--color-amber);font-weight:600;text-decoration:none;">Inicia sesión</a>
+          </p>
+
+        </div>
+        <!-- /panel-signup -->
+
+        <!-- E. Panel de Inicio de Sesión -->
+        <div id="panel-login" class="form-panel hidden-panel">
+
+          <!-- Usuario de inicio de sesión -->
+          <div class="input-group">
+            <label class="input-label" for="input-usuario-login">Usuario</label>
+            <input
+              id="input-usuario-login"
+              class="input-field"
+              type="text"
+              placeholder="tu_usuario"
+              autocomplete="username"
+            >
+            <span class="input-helper" style="color:var(--color-text-faint);font-size:0.72rem;">Ingresa tu nombre de usuario registrado</span>
+          </div>
+
+          <!-- Contraseña con enlace de olvido y toggle -->
+          <div class="input-group">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+              <label class="input-label" for="input-pass-login" style="margin-bottom:0;">Contraseña</label>
+              <a href="#" id="forgot-pw" style="font-size:0.75rem;color:var(--color-text-muted);text-decoration:none;">¿Olvidaste tu contraseña?</a>
+            </div>
+            <div class="pw-wrap">
+              <input
+                id="input-pass-login"
+                class="input-field"
+                type="password"
+                placeholder="Tu contraseña"
+                autocomplete="current-password"
+                style="padding-right:3rem;"
+              >
+              <button type="button" class="pw-toggle" aria-label="Mostrar contraseña">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Botón de ingreso -->
+          <button id="btn-login" class="btn btn-primary btn-full" style="margin-top:0.5rem;">Ingresar →</button>
+
+          <!-- Cuadro de credenciales de demostración -->
+          <div style="margin-top:1.25rem;padding:0.875rem;background:rgba(250,204,21,0.07);border:1px solid rgba(250,204,21,0.15);border-radius:0.75rem;">
+            <p style="font-size:0.75rem;color:var(--color-text-muted);text-align:center;line-height:1.6;">
+              💡 <strong style="color:var(--color-amber);">Credenciales de demostración</strong><br>
+              Usuario: <code style="background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;">Leidy2004</code><br>
+              Contraseña: <code style="background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;">SalchipapaConCola1!</code>
+            </p>
+          </div>
+
+          <!-- Enlace para registrarse -->
+          <p style="text-align:center;margin-top:1.25rem;font-size:0.8125rem;color:var(--color-text-muted);">
+            ¿No tienes cuenta?
+            <a id="switch-to-signup" href="#" style="color:var(--color-amber);font-weight:600;text-decoration:none;">Regístrate gratis</a>
+          </p>
+
+        </div>
+        <!-- /panel-login -->
+
+      </div>
+      <!-- /auth-card -->
+
+      <!-- Prueba social debajo de la tarjeta -->
+      <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-top:1.75rem;">
+        <span style="font-size:0.8rem;color:var(--color-text-faint);">🔒 Tus datos están protegidos</span>
+        <span style="font-size:0.8rem;color:var(--color-text-faint);">✅ +500 familias registradas</span>
+      </div>
+
+    </div>
+    <!-- /auth-page -->
+
+  </div>
+  <!-- /content-layer -->
+
+  <!-- Contenedor de toasts (manejado por app.js) -->
+  <div id="toast-container"></div>
+
+  <!-- Script inline: enlace "¿Olvidaste tu contraseña?" -->
+  <script>
+    document.getElementById('forgot-pw')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (window.showToast) showToast('🔔 Función próximamente disponible.', 'info', 3000);
+    });
+  </script>
+
+</body>
+</html>

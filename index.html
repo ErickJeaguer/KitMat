@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KitMat – Kit Matemático Interactivo | Aprende, Juega, Resuelve</title>
+  <meta name="description" content="KitMat es el kit de matemáticas interactivo que transforma el aprendizaje en una aventura lúdica. Fracciones, decimales y plano cartesiano para niños desde los 8 años. Diseñado por docentes ecuatorianos apasionados." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="KitMat – Kit Matemático Interactivo" />
+  <meta property="og:description" content="Aprende, juega y resuelve con KitMat. El kit educativo que convierte las matemáticas en una aventura para niños desde los 8 años." />
+  <meta property="og:image" content="assets/images/kitmat_boxart.jpg" />
+  <meta property="og:url" content="https://kitmat.ec" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- GSAP — must load before app.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- App -->
+  <script src="app.js" defer></script>
+</head>
+<body class="cosmic-bg">
+
+  <!-- Particle canvas (fixed, managed by app.js) -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Page transition overlay -->
+  <div id="kitmat-overlay"></div>
+
+  <!-- Toast container (managed by app.js) -->
+  <div id="toast-container"></div>
+
+  <!-- ======================================================
+       CONTENT LAYER
+  ====================================================== -->
+  <div class="content-layer">
+
+    <!-- ====================================================
+         NAVBAR
+    ==================================================== -->
+    <nav id="navbar">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="#inicio" class="nav-logo">
+          <img
+            src="assets/images/kitmat_logo_clean.png"
+            class="nav-logo-img"
+            alt="KitMat logo"
+            width="36"
+            height="36"
+          />
+          <span class="nav-logo-text">KitMat</span>
+        </a>
+
+        <!-- Desktop nav links -->
+        <ul class="nav-links">
+          <li><a href="#inicio" class="nav-link">Inicio</a></li>
+          <li><a href="#quienes-somos" class="nav-link">Quiénes Somos</a></li>
+          <li><a href="#kit" class="nav-link">Nuestro Kit</a></li>
+          <li><a href="store.html" class="nav-link">Tienda</a></li>
+        </ul>
+
+        <!-- Desktop CTA -->
+        <div class="nav-cta">
+          <a href="auth.html" class="btn btn-primary">Obtener</a>
+        </div>
+
+        <!-- Hamburger (mobile) -->
+        <button id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+          <span class="hb-line" id="hb-1"></span>
+          <span class="hb-line" id="hb-2"></span>
+          <span class="hb-line" id="hb-3"></span>
+        </button>
+
+      </div>
+    </nav>
+
+    <!-- ====================================================
+         MOBILE MENU
+    ==================================================== -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+      <a href="#inicio" class="mobile-nav-link">Inicio</a>
+      <a href="#quienes-somos" class="mobile-nav-link">Quiénes Somos</a>
+      <a href="#kit" class="mobile-nav-link">Nuestro Kit</a>
+      <a href="store.html" class="mobile-nav-link">Tienda</a>
+      <a href="auth.html" class="btn btn-primary mobile-cta">Obtener KitMat</a>
+    </div>
+
+    <!-- ====================================================
+         HERO
+    ==================================================== -->
+    <section id="inicio" class="hero-section">
+
+      <!-- Hero logo -->
+      <div id="hero-logo-wrap" class="hero-logo-wrap">
+        <img
+          src="assets/images/kitmat_logo_clean.png"
+          class="hero-logo-img"
+          alt="KitMat Logo"
+        />
+      </div>
+
+      <!-- Slogan -->
+      <div class="hero-slogan">
+        <span class="slogan-word gradient-text">Aprende</span>
+        <span class="slogan-dot">•</span>
+        <span class="slogan-word">Juega</span>
+        <span class="slogan-dot">•</span>
+        <span class="slogan-word shimmer-text">Resuelve</span>
+      </div>
+
+      <!-- Subtitle -->
+      <p id="hero-subtitle" class="hero-subtitle">
+        El kit de matemáticas interactivo que transforma el aprendizaje en una
+        aventura. Diseñado para niños de 8 años en adelante.
+      </p>
+
+      <!-- Actions -->
+      <div id="hero-actions" class="hero-actions">
+        <a href="auth.html" class="btn btn-primary btn-lg">Obtener KitMat 🎓</a>
+        <a href="store.html" class="btn btn-secondary btn-lg">Ver tienda →</a>
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="scroll-hint" aria-hidden="true">
+        <span>Descubrir</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+
+    </section>
+
+    <!-- ====================================================
+         QUIÉNES SOMOS
+    ==================================================== -->
+    <section
+      id="quienes-somos"
+      class="section-pad"
+      style="background: var(--color-bg-2); border-top: 1px solid var(--color-border);"
+    >
+      <div class="container">
+        <div class="asym-grid">
+
+          <!-- Left: text -->
+          <div class="reveal">
+            <div class="section-chip">💡 Nuestra Historia</div>
+            <h2 class="section-title">
+              Nacimos para hacer las
+              <span class="gradient-text">matemáticas divertidas</span>
+            </h2>
+            <p class="section-lead">
+              KitMat nació de la convicción de que el aprendizaje no debería
+              sentirse como una obligación. Somos un proyecto de emprendimiento
+              educativo creado por docentes apasionados que creyeron que cada
+              niño merece una manera emocionante de descubrir las matemáticas.
+              Transformamos fracciones, decimales y el plano cartesiano en
+              experiencias lúdicas accesibles para niños desde los 8 años.
+            </p>
+
+            <!-- Stats row -->
+            <div style="display: flex; gap: 2.5rem; margin-top: 2rem; flex-wrap: wrap;">
+
+              <div style="text-align: center;">
+                <div class="stat-number">8+</div>
+                <div style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.25rem;">
+                  Años de edad
+                </div>
+              </div>
+
+              <div style="text-align: center;">
+                <div class="stat-number">3</div>
+                <div style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.25rem;">
+                  Temas clave
+                </div>
+              </div>
+
+              <div style="text-align: center;">
+                <div class="stat-number">6+</div>
+                <div style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.25rem;">
+                  Componentes
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right: image -->
+          <div class="reveal reveal-delay-2" style="display: flex; justify-content: center; align-items: center;">
+            <img
+              src="assets/images/cornio_idea_clean.png"
+              class="cornio-img cornio-float"
+              alt="Doctor Cornio con una bombilla de ideas"
+              style="max-width: 280px; margin: 0 auto; display: block;"
+            />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         QUÉ BUSCAMOS
+    ==================================================== -->
+    <section
+      id="que-buscamos"
+      class="section-pad"
+      style="background: var(--color-bg);"
+    >
+      <div class="container">
+
+        <!-- Section header -->
+        <header class="text-center reveal" style="text-align: center;">
+          <div class="section-chip">🎯 Nuestra Misión</div>
+          <h2 class="section-title">
+            Transformando la manera en que los niños
+            <span class="gradient-text">aprenden matemáticas</span>
+          </h2>
+          <p class="section-lead" style="margin: 0 auto 3rem;">
+            Cada componente de KitMat está diseñado para cubrir un área
+            matemática clave, haciendo que conceptos complejos sean fáciles
+            y emocionantes.
+          </p>
+        </header>
+
+        <!-- Benefit cards grid -->
+        <div class="grid-4">
+
+          <!-- Card 1: Fracciones -->
+          <article class="benefit-card glass reveal">
+            <div
+              class="kit-icon"
+              style="background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(59,130,246,0.15)); border: 1px solid rgba(139,92,246,0.35); border-radius: 0.75rem; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1rem;"
+              aria-hidden="true"
+            >🧮</div>
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">
+              Fracciones
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.6;">
+              Compara, suma y visualiza fracciones con ruletas giratorias y
+              tarjetas ilustradas que hacen tangible lo abstracto.
+            </p>
+            <div style="margin-top: 1rem;">
+              <span class="section-chip" style="font-size: 0.72rem; padding: 0.2rem 0.65rem;">Nivel Básico–Medio</span>
+            </div>
+          </article>
+
+          <!-- Card 2: Decimales -->
+          <article class="benefit-card glass reveal reveal-delay-1">
+            <div
+              class="kit-icon"
+              style="background: linear-gradient(135deg, rgba(16,185,129,0.25), rgba(5,150,105,0.15)); border: 1px solid rgba(16,185,129,0.35); border-radius: 0.75rem; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1rem;"
+              aria-hidden="true"
+            >📐</div>
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">
+              Decimales
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.6;">
+              Domina los números decimales mediante desafíos progresivos con
+              dados y tarjetas que consolidan el valor posicional de forma
+              divertida.
+            </p>
+            <div style="margin-top: 1rem;">
+              <span class="section-chip" style="font-size: 0.72rem; padding: 0.2rem 0.65rem;">Nivel Medio</span>
+            </div>
+          </article>
+
+          <!-- Card 3: Plano Cartesiano -->
+          <article class="benefit-card glass reveal reveal-delay-2">
+            <div
+              class="kit-icon"
+              style="background: linear-gradient(135deg, rgba(249,115,22,0.25), rgba(234,88,12,0.15)); border: 1px solid rgba(249,115,22,0.35); border-radius: 0.75rem; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1rem;"
+              aria-hidden="true"
+            >📊</div>
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">
+              Plano Cartesiano
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.6;">
+              Navega coordenadas como si fuera un mapa del tesoro. Los niños
+              aprenden a ubicar puntos en ejes X e Y de manera intuitiva y
+              emocionante.
+            </p>
+            <div style="margin-top: 1rem;">
+              <span class="section-chip" style="font-size: 0.72rem; padding: 0.2rem 0.65rem;">Nivel Medio–Avanzado</span>
+            </div>
+          </article>
+
+          <!-- Card 4: Gamificado -->
+          <article class="benefit-card glass reveal reveal-delay-3">
+            <div
+              class="kit-icon"
+              style="background: linear-gradient(135deg, rgba(236,72,153,0.25), rgba(168,85,247,0.15)); border: 1px solid rgba(236,72,153,0.35); border-radius: 0.75rem; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1rem;"
+              aria-hidden="true"
+            >🎮</div>
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">
+              Aprendizaje Gamificado
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.6;">
+              Stickers de logro, dinámicas de juego y recompensas visuales
+              mantienen la motivación alta y el aprendizaje constante en cada
+              sesión.
+            </p>
+            <div style="margin-top: 1rem;">
+              <span class="section-chip" style="font-size: 0.72rem; padding: 0.2rem 0.65rem;">Todos los niveles</span>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Dr. Cornio quote -->
+        <div style="text-align: center; margin-top: 3.5rem;">
+          <img
+            src="assets/images/cornio_lupa_clean.png"
+            class="cornio-img cornio-tilt"
+            alt="Doctor Cornio con una lupa"
+            style="max-width: 220px; margin: 0 auto 1.25rem; display: block;"
+          />
+          <p style="font-style: italic; color: var(--color-text-muted); font-size: 1rem; max-width: 480px; margin: 0 auto;">
+            "Con las herramientas correctas, cualquier niño puede enamorarse
+            de las matemáticas."
+          </p>
+          <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.4rem; opacity: 0.7;">
+            — Dr. Cornio, mascota oficial de KitMat
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================
+         NUESTRO KIT
+    ==================================================== -->
+    <section
+      id="kit"
+      class="section-pad"
+      style="background: var(--color-bg-2); border-top: 1px solid var(--color-border);"
+    >
+      <div class="container">
+
+        <!-- Section header -->
+        <header style="text-align: center; margin-bottom: 3rem;" class="reveal">
+          <div class="section-chip">📦 El Producto</div>
+          <h2 class="section-title">
+            ¿Qué incluye el
+            <span class="gradient-text">KitMat</span>?
+          </h2>
+          <p class="section-lead" style="margin: 0 auto;">
+            Un kit completo pensado para que el aprendizaje sea inmediato,
+            tangible y lleno de sorpresas desde el primer día.
+          </p>
+        </header>
+
+        <!-- Asymmetric grid: image left, list right -->
+        <div class="asym-grid" style="align-items: center; gap: 3rem;">
+
+          <!-- Left: kit box art -->
+          <div class="reveal" style="position: relative;">
+            <div
+              style="
+                border-radius: 1.25rem;
+                overflow: hidden;
+                border: 1px solid var(--color-border);
+                box-shadow: 0 0 60px rgba(139,92,246,0.25), 0 0 120px rgba(59,130,246,0.1);
+                position: relative;
+              "
+            >
+              <img
+                src="assets/images/kitmat_boxart.jpg"
+                alt="KitMat – caja y todos sus componentes"
+                style="width: 100%; height: auto; display: block; border-radius: 1.25rem;"
+              />
+            </div>
+          </div>
+
+          <!-- Right: kit items + price -->
+          <div class="reveal reveal-delay-2">
+
+            <ul style="list-style: none; padding: 0; margin: 0 0 2rem;">
+
+              <li class="kit-item">
+                <span
+                  class="kit-icon"
+                  style="background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(59,130,246,0.1)); border: 1px solid rgba(139,92,246,0.3); border-radius: 0.5rem; padding: 0.4rem 0.55rem; font-size: 1.2rem; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.75rem;"
+                  aria-hidden="true"
+                >🎲</span>
+                <span>Dados Matemáticos</span>
+              </li>
+
+              <li class="kit-item">
+                <span
+                  class="kit-icon"
+                  style="background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(5,150,105,0.1)); border: 1px solid rgba(16,185,129,0.3); border-radius: 0.5rem; padding: 0.4rem 0.55rem; font-size: 1.2rem; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.75rem;"
+                  aria-hidden="true"
+                >🎡</span>
+                <span>Ruleta de Retos</span>
+              </li>
+
+              <li class="kit-item">
+                <span
+                  class="kit-icon"
+                  style="background: linear-gradient(135deg, rgba(249,115,22,0.2), rgba(234,88,12,0.1)); border: 1px solid rgba(249,115,22,0.3); border-radius: 0.5rem; padding: 0.4rem 0.55rem; font-size: 1.2rem; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.75rem;"
+                  aria-hidden="true"
+                >🃏</span>
+                <span>Tarjetas con Ejercicios</span>
+              </li>
+
+              <li class="kit-item">
+                <span
+                  class="kit-icon"
+                  style="background: linear-gradient(135deg, rgba(6,182,212,0.2), rgba(14,165,233,0.1)); border: 1px solid rgba(6,182,212,0.3); border-radius: 0.5rem; padding: 0.4rem 0.55rem; font-size: 1.2rem; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.75rem;"
+                  aria-hidden="true"
+                >🗺️</span>
+                <span>Tarjetas de Plano Cartesiano</span>
+              </li>
+
+              <li class="kit-item">
+                <span
+                  class="kit-icon"
+                  style="background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(168,85,247,0.1)); border: 1px solid rgba(236,72,153,0.3); border-radius: 0.5rem; padding: 0.4rem 0.55rem; font-size: 1.2rem; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.75rem;"
+                  aria-hidden="true"
+                >🏆</span>
+                <span>Stickers y Premios Motivacionales</span>
+              </li>
+
+              <li class="kit-item">
+                <span
+                  class="kit-icon"
+                  style="background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(234,179,8,0.1)); border: 1px solid rgba(245,158,11,0.3); border-radius: 0.5rem; padding: 0.4rem 0.55rem; font-size: 1.2rem; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.75rem;"
+                  aria-hidden="true"
+                >♟️</span>
+                <span>Juego de Mesa con Fichas</span>
+              </li>
+
+            </ul>
+
+            <!-- Price box -->
+            <div
+              class="glass"
+              style="
+                border: 1px solid var(--color-border);
+                border-radius: 1rem;
+                padding: 1.5rem 2rem;
+                text-align: center;
+              "
+            >
+              <div style="font-size: 0.8rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem;">
+                Precio especial de lanzamiento
+              </div>
+              <div
+                class="gradient-text font-display"
+                style="font-size: 2.8rem; font-weight: 900; line-height: 1; margin-bottom: 0.25rem;"
+              >
+                $15.00 USD
+              </div>
+              <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 1.25rem;">
+                Envío disponible en Ecuador
+              </div>
+              <a href="auth.html" class="btn btn-primary btn-lg btn-full">
+                Obtener ahora 🎓
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         TESTIMONIOS
+    ==================================================== -->
+    <section
+      id="testimonios"
+      class="section-pad"
+      style="background: var(--color-bg);"
+    >
+      <div class="container">
+
+        <!-- Section header -->
+        <header style="text-align: center; margin-bottom: 3rem;" class="reveal">
+          <div class="section-chip">💬 Testimonios</div>
+          <h2 class="section-title">
+            Lo que dicen los
+            <span class="gradient-text">padres y maestros</span>
+          </h2>
+        </header>
+
+        <!-- Testimonials track -->
+        <div class="testimonials-track">
+          <div style="display: flex; gap: 1.5rem; width: max-content;">
+
+            <!-- Testimonio 1 -->
+            <article
+              class="testimonial-card glass-card"
+              style="width: 300px; padding: 1.5rem; border-radius: 1rem; flex-shrink: 0;"
+            >
+              <div style="color: #f59e0b; font-size: 1rem; margin-bottom: 0.75rem;" aria-label="5 de 5 estrellas">
+                ⭐⭐⭐⭐⭐
+              </div>
+              <p style="font-style: italic; font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 1.25rem;">
+                "Mi hija solía llorar cuando tenía que hacer las tareas de
+                matemáticas. Desde que llegó el KitMat, ella misma pide
+                practicar. ¡Es un milagro!"
+              </p>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div
+                  aria-hidden="true"
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 700;
+                    font-size: 0.85rem;
+                    color: #fff;
+                    flex-shrink: 0;
+                  "
+                >MP</div>
+                <div>
+                  <div style="font-weight: 600; font-size: 0.9rem;">María Fernanda Pacheco</div>
+                  <div style="font-size: 0.78rem; color: var(--color-text-muted);">Mamá · Quito, Ecuador</div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Testimonio 2 -->
+            <article
+              class="testimonial-card glass-card"
+              style="width: 300px; padding: 1.5rem; border-radius: 1rem; flex-shrink: 0;"
+            >
+              <div style="color: #f59e0b; font-size: 1rem; margin-bottom: 0.75rem;" aria-label="5 de 5 estrellas">
+                ⭐⭐⭐⭐⭐
+              </div>
+              <p style="font-style: italic; font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 1.25rem;">
+                "Lo usé en mi aula con estudiantes de cuarto grado y los
+                resultados fueron increíbles. Los niños competían entre sí
+                por resolver los retos del plano cartesiano. ¡Felicito al equipo!"
+              </p>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div
+                  aria-hidden="true"
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #10b981, #06b6d4);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 700;
+                    font-size: 0.85rem;
+                    color: #fff;
+                    flex-shrink: 0;
+                  "
+                >RT</div>
+                <div>
+                  <div style="font-weight: 600; font-size: 0.9rem;">Roberto Toapanta</div>
+                  <div style="font-size: 0.78rem; color: var(--color-text-muted);">Docente de Primaria · Ambato, Ecuador</div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Testimonio 3 -->
+            <article
+              class="testimonial-card glass-card"
+              style="width: 300px; padding: 1.5rem; border-radius: 1rem; flex-shrink: 0;"
+            >
+              <div style="color: #f59e0b; font-size: 1rem; margin-bottom: 0.75rem;" aria-label="5 de 5 estrellas">
+                ⭐⭐⭐⭐⭐
+              </div>
+              <p style="font-style: italic; font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 1.25rem;">
+                "Mi hijo tiene dislexia y siempre fue difícil para él entender
+                fracciones. El enfoque visual y táctil de KitMat fue exactamente
+                lo que necesitaba. Lo recomiendo totalmente."
+              </p>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div
+                  aria-hidden="true"
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #ec4899, #a855f7);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 700;
+                    font-size: 0.85rem;
+                    color: #fff;
+                    flex-shrink: 0;
+                  "
+                >LV</div>
+                <div>
+                  <div style="font-weight: 600; font-size: 0.9rem;">Lorena Vásquez</div>
+                  <div style="font-size: 0.78rem; color: var(--color-text-muted);">Mamá · Guayaquil, Ecuador</div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Dr. Cornio tube -->
+        <div style="text-align: center; margin-top: 3.5rem;">
+          <img
+            src="assets/images/cornio_tube_clean.png"
+            class="cornio-img cornio-float"
+            alt="Doctor Cornio con un tubo de ensayo"
+            style="max-width: 200px; margin: 0 auto; display: block;"
+          />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================
+         DIVIDER
+    ==================================================== -->
+    <div class="divider"></div>
+
+    <!-- ====================================================
+         FOOTER
+    ==================================================== -->
+    <footer class="footer">
+      <div class="footer-grid">
+
+        <!-- Col 1: Brand -->
+        <div>
+          <a href="#inicio" class="nav-logo" style="margin-bottom: 0.75rem; display: inline-flex;">
+            <img
+              src="assets/images/kitmat_logo_clean.png"
+              class="nav-logo-img"
+              alt="KitMat logo"
+              width="32"
+              height="32"
+            />
+            <span class="nav-logo-text">KitMat</span>
+          </a>
+          <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.6; margin-top: 0.75rem; max-width: 240px;">
+            Aprender jugando es aprender de verdad.
+          </p>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <nav aria-label="Navegación del pie de página">
+          <h3 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text); margin-bottom: 1rem;">
+            Navegación
+          </h3>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem;">
+            <li><a href="#inicio" class="footer-link">Inicio</a></li>
+            <li><a href="#quienes-somos" class="footer-link">Quiénes Somos</a></li>
+            <li><a href="store.html" class="footer-link">Tienda</a></li>
+            <li><a href="auth.html" class="footer-link">Registro</a></li>
+          </ul>
+        </nav>
+
+        <!-- Col 3: Contact -->
+        <div>
+          <h3 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text); margin-bottom: 1rem;">
+            Contacto
+          </h3>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem;">
+            <li style="font-size: 0.9rem; color: var(--color-text-muted);">
+              📧 <a href="mailto:hola@kitmat.ec" class="footer-link">hola@kitmat.ec</a>
+            </li>
+            <li style="font-size: 0.9rem; color: var(--color-text-muted);">
+              📱 <a href="https://wa.me/593999999999" class="footer-link" target="_blank" rel="noopener noreferrer">WhatsApp Ecuador</a>
+            </li>
+            <li style="font-size: 0.9rem; color: var(--color-text-muted);">
+              📍 Ecuador · Envíos a todo el país
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <p class="footer-copy">
+        © 2025 KitMat. Todos los derechos reservados.
+        Hecho con ❤️ para los niños de Ecuador.
+      </p>
+    </footer>
+
+  </div><!-- /.content-layer -->
+
+  <!-- ====================================================
+       FLOATING CTA
+  ==================================================== -->
+  <a
+    id="floating-cta"
+    href="#"
+    class="btn btn-primary btn-lg btn-float-cta"
+    aria-label="Obtener KitMat"
+  >Obtener ya 🎓</a>
+
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Compra KitMat, el Kit Matemático Interactivo para niños de 8 a 14 años. Aprende fracciones, decimales y plano cartesiano jugando. Precio especial de lanzamiento: $15.00 USD. Envío a todo Ecuador.">
+  <meta property="og:title" content="KitMat – Kit Matemático Interactivo | $15.00 USD">
+  <meta property="og:description" content="El juego educativo que convierte las matemáticas en una aventura. Refuerza fracciones, decimales y el plano cartesiano de forma divertida. ¡Edición especial de lanzamiento!">
+  <meta property="og:image" content="assets/images/kitmat_boxart.jpg">
+  <meta property="og:type" content="product">
+  <meta property="og:locale" content="es_EC">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KitMat – Kit Matemático Interactivo">
+  <meta name="twitter:description" content="Aprende matemáticas jugando. Precio especial $15.00 USD. Envío a Ecuador.">
+  <title>KitMat – Comprar Kit Matemático Interactivo | $15.00 USD</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Breadcrumb responsive -->
+  <style>
+    .breadcrumb-nav { display: none; }
+    @media (min-width: 768px) { .breadcrumb-nav { display: block !important; } }
+  </style>
+
+  <!-- GSAP 3.12.5 CDN (non-deferred) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- App JS (deferred) -->
+  <script src="app.js" defer></script>
+</head>
+
+<body class="store-theme">
+
+  <!-- Overlay -->
+  <div id="kitmat-overlay"></div>
+
+  <!-- ========================================================
+       1. PROMO BANNER
+  ======================================================== -->
+  <div class="promo-banner">
+    🚀 ¡Envío disponible a todo Ecuador! · Precio especial de lanzamiento: <strong>$15.00 USD</strong>
+  </div>
+
+  <!-- ========================================================
+       2. NAVBAR
+  ======================================================== -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/kitmat_logo_clean.png" class="nav-logo-img" alt="KitMat">
+        <span class="nav-logo-text font-display">KitMat</span>
+      </a>
+
+      <!-- Breadcrumb (desktop only) -->
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+        <span style="font-size:0.8rem;color:#94a3b8;">
+          Inicio
+          <span style="margin:0 0.4rem;">›</span>
+          Tienda
+          <span style="margin:0 0.4rem;">›</span>
+          <strong style="color:#0f172a;">KitMat</strong>
+        </span>
+      </nav>
+
+      <!-- Right: greeting + cart + logout -->
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <span id="store-greeting" style="display:none;font-size:0.8125rem;font-weight:600;color:#475569;"></span>
+        <a href="#" id="btn-logout" style="font-size:0.8rem;color:#94a3b8;text-decoration:none;font-weight:500;">Cerrar sesión</a>
+        <div style="position:relative;">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#475569" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.3 2.3A1 1 0 006 17h12M9 21a1 1 0 100-2 1 1 0 000 2zm10 0a1 1 0 100-2 1 1 0 000 2z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========================================================
+       3. MAIN CONTENT
+  ======================================================== -->
+  <main style="max-width:1280px;margin:0 auto;padding:1.5rem;padding-top:5rem;">
+
+    <!-- Store Grid -->
+    <div class="store-grid" id="store-main-grid">
+
+      <!-- ====================================================
+           LEFT COLUMN — GALLERY
+      ==================================================== -->
+      <div>
+
+        <!-- Main Image -->
+        <div class="gallery-main" id="store-gallery-main">
+          <img src="assets/images/kitmat_boxart.jpg" alt="KitMat Kit Matemático Interactivo - Vista principal">
+          <div class="gallery-badge">✅ EDICIÓN ESPECIAL</div>
+        </div>
+
+        <!-- Thumbnail Strip -->
+        <div class="thumb-strip">
+          <div class="thumb-item active" data-src="assets/images/kitmat_boxart.jpg" data-alt="Arte de Caja KitMat">
+            <img src="assets/images/kitmat_boxart.jpg" alt="Arte de Caja">
+          </div>
+          <div class="thumb-item" data-src="assets/images/cornio_tube_clean.png" data-alt="Dr. Cornio con tubo de ensayo">
+            <img src="assets/images/cornio_tube_clean.png" alt="Dr. Cornio">
+          </div>
+          <div class="thumb-item" data-src="assets/images/kitmat_components.png" data-alt="Componentes del kit">
+            <img src="assets/images/kitmat_components.png" alt="Componentes">
+          </div>
+          <div class="thumb-item" data-src="assets/images/kitmat_box.png" data-alt="Caja KitMat close-up">
+            <img src="assets/images/kitmat_box.png" alt="Caja">
+          </div>
+        </div>
+
+        <!-- Dr. Cornio Teaser Card (desktop only) -->
+        <div style="margin-top:1.5rem;padding:1.25rem;background:#fff;border:1px solid #e2e8f0;border-radius:1rem;display:flex;align-items:center;gap:1rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+          <img src="assets/images/cornio_lupa_clean.png" alt="Doctor Cornio con lupa" class="cornio-img" style="width:60px;height:60px;flex-shrink:0;">
+          <div>
+            <p style="font-weight:700;font-size:0.875rem;color:#0f172a;margin-bottom:0.25rem;">El Doctor Cornio te recomienda 🔬</p>
+            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">"KitMat convierte cada sesión de estudio en una aventura sin límites."</p>
+          </div>
+        </div>
+
+      </div><!-- /LEFT COLUMN -->
+
+      <!-- ====================================================
+           RIGHT COLUMN — CONVERSION PANEL
+      ==================================================== -->
+      <div>
+
+        <!-- Category Badge -->
+        <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:4px 12px;background:#fef3c7;color:#92400e;font-size:0.72rem;font-weight:700;border-radius:9999px;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1rem;">
+          Kit Educativo · 8+ años
+        </div>
+
+        <!-- H1 -->
+        <h1 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(1.5rem,3vw,2rem);letter-spacing:-0.03em;color:#0f172a;line-height:1.2;margin-bottom:0.875rem;">
+          KitMat: Kit Matemático Interactivo
+        </h1>
+
+        <!-- Stars + Reviews -->
+        <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+          <span style="color:#f59e0b;font-size:1rem;">⭐⭐⭐⭐⭐</span>
+          <span style="font-size:0.8125rem;color:#475569;">(48 reseñas)</span>
+          <span style="font-size:0.75rem;font-weight:700;color:#f97316;">🏆 #1 en Educación</span>
+        </div>
+
+        <!-- Price Block -->
+        <div style="margin-bottom:1.5rem;padding:1.25rem;background:#fff;border:1px solid #e2e8f0;border-radius:1rem;">
+          <div class="price-original">Precio regular: $25.00 USD</div>
+          <div class="price-current">$15.00 <span style="font-size:1.25rem;">USD</span></div>
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-top:0.5rem;flex-wrap:wrap;">
+            <span class="savings-pill">Ahorras $10.00 — 40% OFF</span>
+            <span style="font-size:0.8rem;color:#10b981;font-weight:600;">✅ En stock · Despacho inmediato</span>
+          </div>
+          <p style="font-size:0.78rem;color:#ef4444;font-weight:600;margin-top:0.5rem;">🔥 ¡Últimas 12 unidades disponibles!</p>
+        </div>
+
+        <!-- Benefits List -->
+        <ul style="list-style:none;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.5rem;padding:0;">
+          <li style="font-size:0.875rem;color:#374151;display:flex;align-items:center;gap:0.5rem;">
+            <span style="color:#10b981;">✅</span> Refuerza fracciones, decimales y plano cartesiano
+          </li>
+          <li style="font-size:0.875rem;color:#374151;display:flex;align-items:center;gap:0.5rem;">
+            <span style="color:#10b981;">✅</span> Material para niños de 8 a 14 años
+          </li>
+          <li style="font-size:0.875rem;color:#374151;display:flex;align-items:center;gap:0.5rem;">
+            <span style="color:#10b981;">✅</span> Ideal para usar en casa o en clases
+          </li>
+          <li style="font-size:0.875rem;color:#374151;display:flex;align-items:center;gap:0.5rem;">
+            <span style="color:#10b981;">✅</span> Desarrolla pensamiento lógico y crítico
+          </li>
+        </ul>
+
+        <!-- Delivery Tabs Label -->
+        <div style="margin-bottom:1rem;">
+          <p style="font-size:0.78rem;font-weight:700;color:#374151;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.75rem;">
+            Método de entrega:
+          </p>
+          <div class="delivery-tabs">
+            <button class="del-tab" data-tab="0">🏪 Reservar en tienda</button>
+            <button class="del-tab" data-tab="1">🚚 Envío nacional</button>
+          </div>
+        </div>
+
+        <!-- Sub-form: Pickup -->
+        <div class="del-form" id="del-form-0" style="padding:0 0.25rem;">
+          <div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:0.875rem;margin-bottom:0.875rem;">
+            <label class="store-label" for="pickup-city">Selecciona tu ciudad:</label>
+            <select class="store-input" id="pickup-city">
+              <option>Quito</option>
+              <option>Guayaquil</option>
+              <option>Cuenca</option>
+              <option>Ambato</option>
+              <option>Loja</option>
+              <option>Manta</option>
+              <option>Portoviejo</option>
+            </select>
+            <p id="pickup-info" style="margin-top:0.75rem;font-size:0.8125rem;color:#475569;">
+              📍 Retiro en tienda disponible en Quito
+            </p>
+            <p style="font-size:0.78rem;color:#94a3b8;margin-top:0.25rem;">
+              ⏰ Disponible a partir de mañana (Lun–Sáb, 9am–6pm)
+            </p>
+          </div>
+        </div>
+
+        <!-- Sub-form: Shipping -->
+        <div class="del-form" id="del-form-1" style="padding:0 0.25rem;">
+          <div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:0.875rem;margin-bottom:0.875rem;display:flex;flex-direction:column;gap:0.75rem;">
+            <div>
+              <label class="store-label" for="sh-nombre">Nombre completo</label>
+              <input class="store-input" id="sh-nombre" type="text" placeholder="Tu nombre completo">
+            </div>
+            <div>
+              <label class="store-label" for="sh-dir">Dirección</label>
+              <input class="store-input" id="sh-dir" type="text" placeholder="Calle, número, referencia">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+              <div>
+                <label class="store-label" for="sh-ciudad">Ciudad</label>
+                <input class="store-input" id="sh-ciudad" type="text" placeholder="Tu ciudad">
+              </div>
+              <div>
+                <label class="store-label" for="sh-prov">Provincia</label>
+                <select class="store-input" id="sh-prov">
+                  <option>Pichincha</option>
+                  <option>Guayas</option>
+                  <option>Azuay</option>
+                  <option>Tungurahua</option>
+                  <option>Manabí</option>
+                  <option>El Oro</option>
+                  <option>Imbabura</option>
+                  <option>Chimborazo</option>
+                  <option>Loja</option>
+                  <option>Los Ríos</option>
+                  <option>Esmeraldas</option>
+                  <option>Bolívar</option>
+                  <option>Cañar</option>
+                  <option>Carchi</option>
+                  <option>Cotopaxi</option>
+                  <option>Galápagos</option>
+                  <option>Morona Santiago</option>
+                  <option>Napo</option>
+                  <option>Orellana</option>
+                  <option>Pastaza</option>
+                  <option>Santa Elena</option>
+                  <option>Santo Domingo</option>
+                  <option>Sucumbíos</option>
+                  <option>Zamora Chinchipe</option>
+                </select>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+              <div>
+                <label class="store-label" for="sh-cp">Código Postal</label>
+                <input class="store-input" id="sh-cp" type="text" placeholder="EC170101">
+              </div>
+              <div>
+                <label class="store-label" for="sh-tel">Teléfono</label>
+                <input class="store-input" id="sh-tel" type="tel" placeholder="0999 000 000">
+              </div>
+            </div>
+            <p style="font-size:0.78rem;color:#64748b;">
+              📦 Envío en 3–5 días hábiles. Costo incluido en el precio.
+            </p>
+          </div>
+        </div>
+
+        <!-- Confirm Order Button -->
+        <button id="btn-confirm-order" class="btn btn-primary btn-full btn-confirm btn-lg" style="border-radius:1rem;font-size:1rem;position:relative;overflow:hidden;margin-top:0.25rem;">
+          <span class="btn-text">Confirmar Pedido — $15.00 USD</span>
+          <span class="btn-spinner">
+            <svg class="spinner-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+            Procesando tu pedido...
+          </span>
+        </button>
+
+        <!-- Trust Signals -->
+        <div class="trust-row">
+          <div class="trust-item">🔒 Pago Seguro</div>
+          <div class="trust-item">🔄 Garantía 30 días</div>
+          <div class="trust-item">📞 Soporte en línea</div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;padding-top:0.75rem;">
+          <span style="font-size:0.75rem;color:#94a3b8;">Métodos de pago:</span>
+          <span style="font-size:0.75rem;font-weight:700;color:#475569;">💳 Visa · Mastercard · Transferencia · PayPal</span>
+        </div>
+
+      </div><!-- /RIGHT COLUMN -->
+
+    </div><!-- /store-grid -->
+
+    <!-- ========================================================
+         4. PRODUCT DESCRIPTION SECTION
+    ======================================================== -->
+    <section style="margin-top:4rem;padding-top:2.5rem;border-top:2px solid #e2e8f0;">
+
+      <!-- Tab Bar -->
+      <div class="desc-tab-bar">
+        <button class="desc-tab-btn">Descripción</button>
+        <button class="desc-tab-btn">¿Qué incluye?</button>
+        <button class="desc-tab-btn">Reseñas</button>
+      </div>
+
+      <!-- Panel 1: Descripción -->
+      <div class="desc-panel">
+        <p style="color:#374151;line-height:1.8;margin-bottom:1rem;">
+          KitMat es más que un juego de mesa — es una herramienta pedagógica diseñada por educadores con años de experiencia en el aula. Cada componente fue cuidadosamente seleccionado para cubrir las áreas matemáticas que más desafíos representan para los estudiantes de educación básica: fracciones, decimales y el plano cartesiano.
+        </p>
+        <p style="color:#374151;line-height:1.8;margin-bottom:1rem;">
+          A través de la metodología del aprendizaje basado en juegos, KitMat logra que los niños practiquen conceptos matemáticos complejos de manera natural, colaborativa y divertida. La competencia sana entre jugadores, el sistema de recompensas y los retos progresivos mantienen la motivación alta durante toda la sesión.
+        </p>
+        <p style="color:#374151;line-height:1.8;margin-bottom:1rem;">
+          Diseñado con materiales de alta calidad y fichas grandes de fácil manipulación, KitMat garantiza horas de aprendizaje significativo. Cada elemento del juego fue validado por docentes de educación básica, asegurando que los contenidos estén alineados con el currículo nacional del Ecuador.
+        </p>
+        <p style="color:#374151;line-height:1.8;">
+          Ideal para uso en el hogar como complemento a las tareas escolares, o en el aula como recurso didáctico innovador. Un regalo perfecto para niños de 8 a 14 años que quieran mejorar sus notas mientras se divierten.
+        </p>
+      </div><!-- /Panel 1 -->
+
+      <!-- Panel 2: ¿Qué incluye? -->
+      <div class="desc-panel">
+        <p style="color:#374151;line-height:1.8;margin-bottom:1.5rem;font-size:0.9375rem;">
+          Cada caja de KitMat incluye <strong>6 componentes cuidadosamente diseñados</strong> para brindar una experiencia de aprendizaje completa e inmersiva:
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.25rem;">
+
+          <!-- Componente 1 -->
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <div style="font-size:2.5rem;margin-bottom:0.75rem;">🎲</div>
+            <h3 style="font-family:'Outfit',sans-serif;font-size:0.9375rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Dados Matemáticos</h3>
+            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">Dados especiales con operaciones matemáticas que determinan el movimiento y los retos del turno.</p>
+          </div>
+
+          <!-- Componente 2 -->
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <div style="font-size:2.5rem;margin-bottom:0.75rem;">🎡</div>
+            <h3 style="font-family:'Outfit',sans-serif;font-size:0.9375rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Ruleta de Retos</h3>
+            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">Una ruleta giratoria con diferentes categorías de desafíos matemáticos para poner a prueba a los jugadores.</p>
+          </div>
+
+          <!-- Componente 3 -->
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <div style="font-size:2.5rem;margin-bottom:0.75rem;">🃏</div>
+            <h3 style="font-family:'Outfit',sans-serif;font-size:0.9375rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Tarjetas de Ejercicios</h3>
+            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">Más de 120 tarjetas con ejercicios de fracciones, decimales y geometría en niveles progresivos de dificultad.</p>
+          </div>
+
+          <!-- Componente 4 -->
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <div style="font-size:2.5rem;margin-bottom:0.75rem;">🗺️</div>
+            <h3 style="font-family:'Outfit',sans-serif;font-size:0.9375rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Plano Cartesiano</h3>
+            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">Tablero magnético del plano cartesiano para graficar puntos y resolver desafíos de coordenadas en tiempo real.</p>
+          </div>
+
+          <!-- Componente 5 -->
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <div style="font-size:2.5rem;margin-bottom:0.75rem;">🏆</div>
+            <h3 style="font-family:'Outfit',sans-serif;font-size:0.9375rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Stickers de Logros</h3>
+            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">Sistema de recompensas con stickers coleccionables para motivar a los jugadores a seguir aprendiendo.</p>
+          </div>
+
+          <!-- Componente 6 -->
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <div style="font-size:2.5rem;margin-bottom:0.75rem;">♟️</div>
+            <h3 style="font-family:'Outfit',sans-serif;font-size:0.9375rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Juego de Mesa</h3>
+            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">Tablero principal de alta calidad con diseño temático, fichas de jugador y manual de instrucciones ilustrado.</p>
+          </div>
+
+        </div>
+      </div><!-- /Panel 2 -->
+
+      <!-- Panel 3: Reseñas -->
+      <div class="desc-panel">
+
+        <!-- Rating Summary -->
+        <div style="display:flex;align-items:center;gap:2rem;margin-bottom:2rem;flex-wrap:wrap;">
+          <div style="text-align:center;">
+            <div style="font-family:'Outfit',sans-serif;font-size:4rem;font-weight:900;color:#0f172a;line-height:1;">5.0</div>
+            <div style="color:#f59e0b;font-size:1.25rem;margin:0.25rem 0;">⭐⭐⭐⭐⭐</div>
+            <div style="font-size:0.8rem;color:#64748b;">48 reseñas verificadas</div>
+          </div>
+          <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:0.5rem;">
+            <!-- 5 Stars -->
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <span style="font-size:0.78rem;color:#64748b;white-space:nowrap;">5 ⭐</span>
+              <div style="flex:1;height:8px;background:#e2e8f0;border-radius:9999px;overflow:hidden;">
+                <div style="width:100%;height:100%;background:#f59e0b;border-radius:9999px;"></div>
+              </div>
+              <span style="font-size:0.78rem;color:#64748b;white-space:nowrap;">48</span>
+            </div>
+            <!-- 4 Stars -->
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <span style="font-size:0.78rem;color:#64748b;white-space:nowrap;">4 ⭐</span>
+              <div style="flex:1;height:8px;background:#e2e8f0;border-radius:9999px;overflow:hidden;">
+                <div style="width:0%;height:100%;background:#f59e0b;border-radius:9999px;"></div>
+              </div>
+              <span style="font-size:0.78rem;color:#64748b;white-space:nowrap;">0</span>
+            </div>
+            <!-- 3 Stars -->
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <span style="font-size:0.78rem;color:#64748b;white-space:nowrap;">3 ⭐</span>
+              <div style="flex:1;height:8px;background:#e2e8f0;border-radius:9999px;overflow:hidden;">
+                <div style="width:0%;height:100%;background:#f59e0b;border-radius:9999px;"></div>
+              </div>
+              <span style="font-size:0.78rem;color:#64748b;white-space:nowrap;">0</span>
+            </div>
+            <!-- 2 Stars -->
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <span style="font-size:0.78rem;color:#64748b;white-space:nowrap;">2 ⭐</span>
+              <div style="flex:1;height:8px;background:#e2e8f0;border-radius:9999px;overflow:hidden;">
+                <div style="width:0%;height:100%;background:#f59e0b;border-radius:9999px;"></div>
+              </div>
+              <span style="font-size:0.78rem;color:#64748b;white-space:nowrap;">0</span>
+            </div>
+            <!-- 1 Star -->
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <span style="font-size:0.78rem;color:#64748b;white-space:nowrap;">1 ⭐</span>
+              <div style="flex:1;height:8px;background:#e2e8f0;border-radius:9999px;overflow:hidden;">
+                <div style="width:0%;height:100%;background:#f59e0b;border-radius:9999px;"></div>
+              </div>
+              <span style="font-size:0.78rem;color:#64748b;white-space:nowrap;">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review Cards -->
+        <div style="display:flex;flex-direction:column;gap:1.25rem;">
+
+          <!-- Review 1 -->
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem;">
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <div style="width:40px;height:40px;border-radius:9999px;background:linear-gradient(135deg,#f97316,#fb923c);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem;color:#fff;flex-shrink:0;">MP</div>
+                <div>
+                  <p style="font-weight:700;font-size:0.875rem;color:#0f172a;margin-bottom:0.1rem;">María Paz Andrade</p>
+                  <p style="font-size:0.75rem;color:#94a3b8;">Quito, Ecuador · Mamá de 2 hijos</p>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.2rem;">
+                <span style="color:#f59e0b;font-size:0.875rem;">⭐⭐⭐⭐⭐</span>
+                <span style="font-size:0.72rem;color:#94a3b8;">15 de mayo, 2025</span>
+              </div>
+            </div>
+            <p style="font-size:0.875rem;color:#374151;line-height:1.7;">
+              ¡Increíble producto! Mi hijo de 10 años odiaba las matemáticas y desde que llegó KitMat no quiere parar de jugar. En tres semanas ya maneja fracciones sin problema. Lo recomiendo a todos los padres que buscan una alternativa divertida a las clases tradicionales. La calidad del material es excelente.
+            </p>
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.75rem;">
+              <span style="font-size:0.72rem;font-weight:700;color:#16a34a;background:#f0fdf4;padding:2px 8px;border-radius:9999px;">✅ Compra verificada</span>
+            </div>
+          </div>
+
+          <!-- Review 2 -->
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem;">
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <div style="width:40px;height:40px;border-radius:9999px;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem;color:#fff;flex-shrink:0;">CR</div>
+                <div>
+                  <p style="font-weight:700;font-size:0.875rem;color:#0f172a;margin-bottom:0.1rem;">Carlos Rivadeneira</p>
+                  <p style="font-size:0.75rem;color:#94a3b8;">Guayaquil, Ecuador · Docente de primaria</p>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.2rem;">
+                <span style="color:#f59e0b;font-size:0.875rem;">⭐⭐⭐⭐⭐</span>
+                <span style="font-size:0.72rem;color:#94a3b8;">3 de abril, 2025</span>
+              </div>
+            </div>
+            <p style="font-size:0.875rem;color:#374151;line-height:1.7;">
+              Como docente de matemáticas llevo 12 años buscando un recurso así. KitMat está perfectamente alineado con el currículo ecuatoriano y los niños lo adoptan inmediatamente. Lo usé en mi clase de 6to grado y el nivel de participación fue extraordinario. Compré 3 kits para el aula. Material robusto y bien pensado.
+            </p>
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.75rem;">
+              <span style="font-size:0.72rem;font-weight:700;color:#16a34a;background:#f0fdf4;padding:2px 8px;border-radius:9999px;">✅ Compra verificada</span>
+            </div>
+          </div>
+
+          <!-- Review 3 -->
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem;">
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <div style="width:40px;height:40px;border-radius:9999px;background:linear-gradient(135deg,#10b981,#34d399);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem;color:#fff;flex-shrink:0;">LV</div>
+                <div>
+                  <p style="font-weight:700;font-size:0.875rem;color:#0f172a;margin-bottom:0.1rem;">Lucía Vargas Mora</p>
+                  <p style="font-size:0.75rem;color:#94a3b8;">Cuenca, Ecuador · Mamá de gemelos</p>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.2rem;">
+                <span style="color:#f59e0b;font-size:0.875rem;">⭐⭐⭐⭐⭐</span>
+                <span style="font-size:0.72rem;color:#94a3b8;">28 de marzo, 2025</span>
+              </div>
+            </div>
+            <p style="font-size:0.875rem;color:#374151;line-height:1.7;">
+              Mis gemelos de 11 años compiten entre ellos con KitMat todos los fines de semana. Es fascinante ver cómo aprenden sin darse cuenta. Las tarjetas de ejercicios son variadas y el nivel de dificultad va escalando perfectamente. El envío llegó rápido y muy bien empacado. ¡Vale cada centavo!
+            </p>
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.75rem;">
+              <span style="font-size:0.72rem;font-weight:700;color:#16a34a;background:#f0fdf4;padding:2px 8px;border-radius:9999px;">✅ Compra verificada</span>
+            </div>
+          </div>
+
+          <!-- Review 4 -->
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem;">
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <div style="width:40px;height:40px;border-radius:9999px;background:linear-gradient(135deg,#f43f5e,#fb7185);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem;color:#fff;flex-shrink:0;">JT</div>
+                <div>
+                  <p style="font-weight:700;font-size:0.875rem;color:#0f172a;margin-bottom:0.1rem;">Jorge Tapia Espinoza</p>
+                  <p style="font-size:0.75rem;color:#94a3b8;">Ambato, Ecuador · Padre de familia</p>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.2rem;">
+                <span style="color:#f59e0b;font-size:0.875rem;">⭐⭐⭐⭐⭐</span>
+                <span style="font-size:0.72rem;color:#94a3b8;">10 de febrero, 2025</span>
+              </div>
+            </div>
+            <p style="font-size:0.875rem;color:#374151;line-height:1.7;">
+              Compré KitMat como regalo de cumpleaños para mi hija de 9 años y fue un éxito rotundo. Lo que más me sorprendió fue que sus amigos también quisieron jugar, entonces se convirtió en una actividad grupal increíble. El plano cartesiano magnético es genial — hace que un tema difícil sea muy visual y fácil de entender.
+            </p>
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.75rem;">
+              <span style="font-size:0.72rem;font-weight:700;color:#16a34a;background:#f0fdf4;padding:2px 8px;border-radius:9999px;">✅ Compra verificada</span>
+            </div>
+          </div>
+
+        </div><!-- /review cards -->
+
+      </div><!-- /Panel 3 -->
+
+    </section><!-- /desc section -->
+
+    <!-- ========================================================
+         5. WHY PARENTS LOVE KITMAT
+    ======================================================== -->
+    <section style="margin-top:3rem;padding:3rem 0;">
+      <h2 style="font-family:'Outfit',sans-serif;font-size:1.75rem;font-weight:800;color:#0f172a;letter-spacing:-0.02em;text-align:center;margin-bottom:2rem;">
+        ¿Por qué los padres aman <span style="color:#f97316;">KitMat</span>?
+      </h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;">
+
+        <!-- Benefit Card 1 -->
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.75rem;box-shadow:0 4px 16px rgba(0,0,0,0.06);position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#f97316,#fb923c);"></div>
+          <div style="font-size:2.25rem;margin-bottom:1rem;">📈</div>
+          <h3 style="font-family:'Outfit',sans-serif;font-size:1.0625rem;font-weight:700;color:#0f172a;margin-bottom:0.625rem;">Mejora las notas realmente</h3>
+          <p style="font-size:0.875rem;color:#64748b;line-height:1.7;">
+            El 93% de los padres reporta una mejora notable en las calificaciones de matemáticas de sus hijos tras 4 semanas de uso regular. No es magia — es aprendizaje activo que funciona.
+          </p>
+        </div>
+
+        <!-- Benefit Card 2 -->
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.75rem;box-shadow:0 4px 16px rgba(0,0,0,0.06);position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#6366f1,#8b5cf6);"></div>
+          <div style="font-size:2.25rem;margin-bottom:1rem;">⏰</div>
+          <h3 style="font-family:'Outfit',sans-serif;font-size:1.0625rem;font-weight:700;color:#0f172a;margin-bottom:0.625rem;">Menos pantallas, más aprendizaje</h3>
+          <p style="font-size:0.875rem;color:#64748b;line-height:1.7;">
+            KitMat es la alternativa perfecta a las horas frente al celular o la televisión. Una sesión de juego de 45 minutos equivale a dos horas de estudio convencional en términos de retención de conceptos.
+          </p>
+        </div>
+
+        <!-- Benefit Card 3 -->
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1.25rem;padding:1.75rem;box-shadow:0 4px 16px rgba(0,0,0,0.06);position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#10b981,#34d399);"></div>
+          <div style="font-size:2.25rem;margin-bottom:1rem;">👨‍👩‍👧‍👦</div>
+          <h3 style="font-family:'Outfit',sans-serif;font-size:1.0625rem;font-weight:700;color:#0f172a;margin-bottom:0.625rem;">Fortalece el vínculo familiar</h3>
+          <p style="font-size:0.875rem;color:#64748b;line-height:1.7;">
+            KitMat está diseñado para jugar en familia. Los padres pueden participar como facilitadores o competir con sus hijos, convirtiendo el tiempo de estudio en momentos de conexión y diversión compartida.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         6. FOOTER
+    ======================================================== -->
+    <footer style="margin-top:4rem;padding:2rem 0;border-top:1px solid #e2e8f0;text-align:center;">
+      <img src="assets/images/kitmat_logo_clean.png" alt="KitMat" style="width:40px;height:40px;object-fit:contain;margin:0 auto 0.75rem;display:block;">
+      <p style="font-size:0.8125rem;color:#94a3b8;">© 2025 KitMat. Todos los derechos reservados.</p>
+      <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:0.75rem;flex-wrap:wrap;">
+        <a href="index.html" style="font-size:0.8rem;color:#94a3b8;text-decoration:none;">Inicio</a>
+        <a href="auth.html" style="font-size:0.8rem;color:#94a3b8;text-decoration:none;">Registro</a>
+      </div>
+    </footer>
+
+  </main><!-- /main -->
+
+  <!-- ========================================================
+       7. SUCCESS MODAL
+  ======================================================== -->
+  <div id="success-modal">
+    <div class="modal-card">
+      <img src="assets/images/cornio_idea_clean.png" alt="Doctor Cornio con una idea" class="cornio-img" style="width:160px;height:160px;margin:0 auto 1.25rem;display:block;">
+      <h2 style="font-family:'Outfit',sans-serif;font-size:1.75rem;font-weight:900;color:#16a34a;letter-spacing:-0.02em;margin-bottom:0.625rem;">
+        ¡Pedido Confirmado! 🎉
+      </h2>
+      <p style="font-size:0.875rem;color:#475569;line-height:1.65;margin-bottom:1.5rem;">
+        ¡Felicitaciones! Tu KitMat está en camino. El Doctor Cornio y todo el equipo están emocionados de acompañarte en tu aventura matemática.
+      </p>
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:0.875rem;padding:1rem;text-align:left;margin-bottom:1.5rem;">
+        <div style="display:flex;justify-content:space-between;font-size:0.8125rem;margin-bottom:0.5rem;">
+          <span style="color:#64748b;">Producto:</span>
+          <span style="color:#0f172a;font-weight:600;">KitMat Interactivo</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:0.8125rem;margin-bottom:0.5rem;">
+          <span style="color:#64748b;">Precio:</span>
+          <span style="color:#f97316;font-weight:800;">$15.00 USD</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:0.8125rem;">
+          <span style="color:#64748b;">Estado:</span>
+          <span style="color:#16a34a;font-weight:700;">✅ Confirmado</span>
+        </div>
+      </div>
+      <button id="btn-modal-close" class="btn btn-primary btn-full">¡Entendido! Volver al inicio</button>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       8. STICKY MOBILE BUY BAR
+  ======================================================== -->
+  <div id="mobile-buy-bar">
+    <div>
+      <div class="price-current" style="font-size:1.5rem;">$15.00 <span style="font-size:0.875rem;">USD</span></div>
+      <div class="price-original">Antes: $25.00</div>
+    </div>
+    <button id="mobile-cta-order" class="btn btn-primary">Comprar Ahora</button>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+</body>
+</html>
