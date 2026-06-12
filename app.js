@@ -18,8 +18,11 @@ const KITMAT = {
   DEMO_USER: 'Leidy2004',
   DEMO_PASS: 'SalchipapaConCola1!',
 
-  /** Clave de localStorage */
+  /** Clave de localStorage (solo sesión activa, sin credenciales permanentes) */
   STORAGE_KEY: 'kitmat_session',
+
+  /** URL de la API de Google Apps Script */
+  API_URL: 'https://script.google.com/macros/s/AKfycbxbwTgcAzahTca8CNvgaeaeoNwVMSxX_JYTBGNhGc1W5yGwH3mJlyjhmsF0835fFcdjeg/exec',
 
   /** Páginas */
   PAGES: {
@@ -688,7 +691,7 @@ function initAuthPage() {
   }
 
   /* ── SIGN UP SUBMIT ── */
-  document.getElementById('btn-signup')?.addEventListener('click', () => {
+  document.getElementById('btn-signup')?.addEventListener('click', async () => {
     const fields = {
       nombre:    $('#input-nombre'),
       apellido:  $('#input-apellido'),
@@ -713,8 +716,8 @@ function initAuthPage() {
       return;
     }
 
-    // Guardar usuario registrado
     const userData = {
+      accion:     'registrar',
       nombre:     fields.nombre?.value.trim(),
       apellido:   fields.apellido?.value.trim(),
       usuario:    fields.usuario?.value.trim(),
@@ -722,13 +725,38 @@ function initAuthPage() {
       email:      fields.email?.value.trim(),
       contrasena: fields.contrasena?.value,
     };
-    KitmatAuth.login(userData);
-    showToast('✅ ¡Cuenta creada con éxito! Bienvenido/a.', 'success', 2000);
-    setTimeout(() => pageTransitionTo(KITMAT.PAGES.store), 800);
+
+    const btn = document.getElementById('btn-signup');
+    const originalText = btn?.textContent ?? 'Registrarse';
+    if (btn) { btn.disabled = true; btn.textContent = 'Procesando...'; }
+
+    try {
+      // Google Apps Script no permite CORS con POST JSON,
+      // enviamos como application/x-www-form-urlencoded con mode no-cors
+      const body = new URLSearchParams(userData).toString();
+      await fetch(KITMAT.API_URL, {
+        method: 'POST',
+        mode:   'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+      });
+      // no-cors no devuelve body legible; asumimos éxito si no hubo error de red
+      const sessionData = { ...userData };
+      delete sessionData.accion;
+      KitmatAuth.login(sessionData);
+      showToast('✅ ¡Cuenta creada con éxito! Bienvenido/a.', 'success', 2000);
+      setTimeout(() => pageTransitionTo(KITMAT.PAGES.store), 800);
+    } catch (err) {
+      shakeCard();
+      showErrorBanner('❌ Error de conexión. Verifica tu internet e intenta de nuevo.');
+      showToast('❌ No se pudo conectar con el servidor.', 'error', 3500);
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = originalText; }
+    }
   });
 
   /* ── LOGIN SUBMIT ── */
-  document.getElementById('btn-login')?.addEventListener('click', () => {
+  document.getElementById('btn-login')?.addEventListener('click', async () => {
     const usuarioInput = $('#input-usuario-login');
     const passInput    = $('#input-pass-login');
     if (!usuarioInput || !passInput) return;
@@ -742,18 +770,73 @@ function initAuthPage() {
       return;
     }
 
-    const result = KitmatAuth.validateCredentials(usuario, contrasena);
-    if (!result) {
+    const btn = document.getElementById('btn-login');
+    const originalText = btn?.textContent ?? 'Iniciar sesión';
+    if (btn) { btn.disabled = true; btn.textContent = 'Verificando...'; }
+
+    try {
+      /* ── PASO 1: Enviar datos a Google Sheets via POST no-cors ──
+         Mismo método que el registro. Garantiza que el intento de login
+         queda registrado en la hoja de cálculo sin importar el resultado.
+         (no-cors no devuelve body legible, pero el POST SÍ llega al servidor) */
+      await fetch(KITMAT.API_URL, {
+        method:  'POST',
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body:    new URLSearchParams({ accion: 'login', usuario, contrasena }).toString(),
+      });
+
+      /* ── PASO 2: Verificar credenciales localmente ──
+         - Primero busca el usuario demo hardcodeado
+         - Luego busca en localStorage (usuario registrado en este dispositivo) */
+      const localResult = KitmatAuth.validateCredentials(usuario, contrasena);
+
+      if (localResult) {
+        KitmatAuth.login(localResult);
+        showToast(`✅ ¡Bienvenido/a, ${localResult.nombre ?? localResult.usuario}!`, 'success', 2000);
+        setTimeout(() => pageTransitionTo(KITMAT.PAGES.store), 700);
+        return;
+      }
+
+      /* ── PASO 3: Verificación GET contra la API (fallback para usuarios
+         registrados en sesiones anteriores que el backend pueda confirmar) ──
+         Usa redirect:'follow' para manejar el redirect 302 de Google Apps Script */
+      let apiVerified = false;
+      try {
+        const params   = new URLSearchParams({ accion: 'verificar', usuario, contrasena });
+        const response = await fetch(`${KITMAT.API_URL}?${params.toString()}`, {
+          method: 'GET', mode: 'cors', redirect: 'follow',
+        });
+        if (response.ok) {
+          const raw  = await response.text();
+          const data = raw.trim() ? JSON.parse(raw) : null;
+          // Apps Script devuelve { valido: true, datos: {...} }
+          if (data && (data.valido === true || data.exito === true)) {
+            const sessionData = data.datos ?? { usuario, nombre: data.nombre ?? usuario };
+            KitmatAuth.login(sessionData);
+            showToast(`✅ ¡Bienvenido/a, ${sessionData.nombre ?? sessionData.usuario}!`, 'success', 2000);
+            setTimeout(() => pageTransitionTo(KITMAT.PAGES.store), 700);
+            apiVerified = true;
+          }
+        }
+      } catch (_) { /* GET opcional — si falla CORS, solo muestra error de credenciales */ }
+
+      if (!apiVerified) {
+        shakeCard();
+        applyInputState(usuarioInput, null, false);
+        applyInputState(passInput, null, false);
+        showErrorBanner('❌ Usuario o contraseña incorrectos. Verifica tus datos.');
+      }
+
+    } catch (err) {
       shakeCard();
       applyInputState(usuarioInput, null, false);
       applyInputState(passInput, null, false);
-      showErrorBanner('❌ Usuario o contraseña incorrectos. Verifica tus datos.');
-      return;
+      showErrorBanner('❌ Error de conexión. Verifica tu internet e intenta de nuevo.');
+      showToast('❌ No se pudo conectar con el servidor.', 'error', 3500);
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = originalText; }
     }
-
-    KitmatAuth.login(result);
-    showToast(`✅ ¡Bienvenido/a, ${result.nombre ?? result.usuario}!`, 'success', 2000);
-    setTimeout(() => pageTransitionTo(KITMAT.PAGES.store), 700);
   });
 
   /* ── GSAP entrance del card ── */
