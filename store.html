@@ -329,55 +329,195 @@
 
       <!-- Panel 2: ¿Qué incluye? -->
       <div class="desc-panel">
-        <p style="color:#374151;line-height:1.8;margin-bottom:1.5rem;font-size:0.9375rem;">
-          Cada caja de KitMat incluye <strong>6 componentes cuidadosamente diseñados</strong> para brindar una experiencia de aprendizaje completa e inmersiva:
+
+        <!-- ── Intro ── -->
+        <p style="color:#374151;line-height:1.8;margin-bottom:2rem;font-size:0.9375rem;">
+          Cada caja de KitMat incluye <strong>6 componentes cuidadosamente diseñados</strong> para brindar una experiencia de aprendizaje completa e inmersiva. Los tableros de juego son el corazón del kit:
         </p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.25rem;">
 
-          <!-- Componente 1 -->
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-            <div style="font-size:2.5rem;margin-bottom:0.75rem;">🎲</div>
-            <h3 style="font-family:'Outfit',sans-serif;font-size:0.9375rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Dados Matemáticos</h3>
-            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">Dados especiales con operaciones matemáticas que determinan el movimiento y los retos del turno.</p>
+        <!-- ── TABLEROS DE JUEGO — Carrusel interactivo ── -->
+        <div style="margin-bottom:2.5rem;">
+          <h3 style="font-family:'Outfit',sans-serif;font-size:1.125rem;font-weight:800;color:#0f172a;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem;">
+            🎮 Tableros de Juego Incluidos
+            <span style="font-size:0.72rem;font-weight:700;color:#6366f1;background:#eef2ff;padding:3px 10px;border-radius:9999px;letter-spacing:0.05em;">4 TABLEROS</span>
+          </h3>
+
+          <!-- Carrusel wrapper -->
+          <div id="boards-carousel" style="position:relative;">
+
+            <!-- Track -->
+            <div id="boards-track" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;overflow:hidden;transition:all 0.35s ease;">
+
+              <!-- Tablero 1: División -->
+              <div class="board-card" style="background:#fff;border:2px solid #e2e8f0;border-radius:1.25rem;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.07);cursor:pointer;transition:transform 0.22s,box-shadow 0.22s;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 32px rgba(99,102,241,0.18)'" onmouseleave="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.07)'" onclick="openBoardModal('assets/images/tablero_division.png','Tablero de División','Tabla de división del 1 al 12 con fichas de conteo. Los jugadores practican divisiones y registran sus respuestas con las fichas circulares.')">
+                <div style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#e0f2fe;">
+                  <img src="assets/images/tablero_division.png" alt="Tablero de División KitMat" style="width:100%;height:100%;object-fit:cover;">
+                  <div style="position:absolute;top:0.625rem;left:0.625rem;background:linear-gradient(135deg,#3b82f6,#6366f1);color:#fff;font-size:0.68rem;font-weight:800;padding:3px 10px;border-radius:9999px;letter-spacing:0.05em;">DIVISIÓN ÷</div>
+                  <div style="position:absolute;bottom:0;left:0;right:0;padding:0.625rem;background:linear-gradient(to top,rgba(0,0,0,0.5),transparent);color:#fff;font-size:0.75rem;text-align:center;">🔍 Ver más grande</div>
+                </div>
+                <div style="padding:0.875rem;">
+                  <p style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.875rem;color:#0f172a;margin-bottom:0.25rem;">Tablero de División</p>
+                  <p style="font-size:0.75rem;color:#64748b;line-height:1.4;">Tabla 1–12 con fichas de conteo circulares</p>
+                </div>
+              </div>
+
+              <!-- Tablero 2: Suma -->
+              <div class="board-card" style="background:#fff;border:2px solid #e2e8f0;border-radius:1.25rem;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.07);cursor:pointer;transition:transform 0.22s,box-shadow 0.22s;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 32px rgba(16,185,129,0.18)'" onmouseleave="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.07)'" onclick="openBoardModal('assets/images/tablero_suma.png','Tablero de Suma','Dos filas de fichas circulares (azul y amarillo) para representar sumandos visualmente. Ideal para sumar del 1 al 100 de forma concreta y manipulativa.')">
+                <div style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#d1fae5;">
+                  <img src="assets/images/tablero_suma.png" alt="Tablero de Suma KitMat" style="width:100%;height:100%;object-fit:cover;">
+                  <div style="position:absolute;top:0.625rem;left:0.625rem;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-size:0.68rem;font-weight:800;padding:3px 10px;border-radius:9999px;letter-spacing:0.05em;">SUMA +</div>
+                  <div style="position:absolute;bottom:0;left:0;right:0;padding:0.625rem;background:linear-gradient(to top,rgba(0,0,0,0.5),transparent);color:#fff;font-size:0.75rem;text-align:center;">🔍 Ver más grande</div>
+                </div>
+                <div style="padding:0.875rem;">
+                  <p style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.875rem;color:#0f172a;margin-bottom:0.25rem;">Tablero de Suma</p>
+                  <p style="font-size:0.75rem;color:#64748b;line-height:1.4;">Fichas circulares para sumas concretas</p>
+                </div>
+              </div>
+
+              <!-- Tablero 3: Multiplicación -->
+              <div class="board-card" style="background:#fff;border:2px solid #e2e8f0;border-radius:1.25rem;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.07);cursor:pointer;transition:transform 0.22s,box-shadow 0.22s;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 32px rgba(249,115,22,0.18)'" onmouseleave="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.07)'" onclick="openBoardModal('assets/images/tablero_multiplicacion.png','Tablero de Multiplicación','Tabla de multiplicar del 1 al 12 con resultados en colores arcoíris por fila. Permite memorizar y verificar las tablas de multiplicar de forma visual y divertida.')">
+                <div style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#fff7ed;">
+                  <img src="assets/images/tablero_multiplicacion.png" alt="Tablero de Multiplicación KitMat" style="width:100%;height:100%;object-fit:cover;">
+                  <div style="position:absolute;top:0.625rem;left:0.625rem;background:linear-gradient(135deg,#f97316,#fb923c);color:#fff;font-size:0.68rem;font-weight:800;padding:3px 10px;border-radius:9999px;letter-spacing:0.05em;">MULTIPLICACIÓN ×</div>
+                  <div style="position:absolute;bottom:0;left:0;right:0;padding:0.625rem;background:linear-gradient(to top,rgba(0,0,0,0.5),transparent);color:#fff;font-size:0.75rem;text-align:center;">🔍 Ver más grande</div>
+                </div>
+                <div style="padding:0.875rem;">
+                  <p style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.875rem;color:#0f172a;margin-bottom:0.25rem;">Tablero de Multiplicación</p>
+                  <p style="font-size:0.75rem;color:#64748b;line-height:1.4;">Tabla arcoíris 1–12 con resultados</p>
+                </div>
+              </div>
+
+              <!-- Tablero 4: Juego Matemático -->
+              <div class="board-card" style="background:#fff;border:2px solid #e2e8f0;border-radius:1.25rem;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.07);cursor:pointer;transition:transform 0.22s,box-shadow 0.22s;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 32px rgba(139,92,246,0.18)'" onmouseleave="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.07)'" onclick="openBoardModal('assets/images/tablero_juego.png','Juego Matemático de Recorrido','40 casillas de retos matemáticos: sumas, restas, multiplicaciones, divisiones y casillas especiales como RETO, AVANZA 5 ESPACIOS y VUELVE AL INICIO. ¡El juego principal del kit!')">
+                <div style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#ede9fe;">
+                  <img src="assets/images/tablero_juego.png" alt="Juego Matemático KitMat" style="width:100%;height:100%;object-fit:cover;">
+                  <div style="position:absolute;top:0.625rem;left:0.625rem;background:linear-gradient(135deg,#8b5cf6,#a78bfa);color:#fff;font-size:0.68rem;font-weight:800;padding:3px 10px;border-radius:9999px;letter-spacing:0.05em;">JUEGO 🎯</div>
+                  <div style="position:absolute;bottom:0;left:0;right:0;padding:0.625rem;background:linear-gradient(to top,rgba(0,0,0,0.5),transparent);color:#fff;font-size:0.75rem;text-align:center;">🔍 Ver más grande</div>
+                </div>
+                <div style="padding:0.875rem;">
+                  <p style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.875rem;color:#0f172a;margin-bottom:0.25rem;">Juego Matemático</p>
+                  <p style="font-size:0.75rem;color:#64748b;line-height:1.4;">40 casillas de retos: suma, resta, × y ÷</p>
+                </div>
+              </div>
+
+            </div><!-- /track -->
+          </div><!-- /carousel -->
+
+          <!-- Responsive note -->
+          <p style="font-size:0.75rem;color:#94a3b8;margin-top:0.75rem;text-align:center;">👆 Haz clic en cualquier tablero para verlo en detalle</p>
+        </div>
+
+        <!-- ── Kit completo checklist ── -->
+        <h3 style="font-family:'Outfit',sans-serif;font-size:1.0625rem;font-weight:800;color:#0f172a;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem;">
+          📦 Contenido completo del kit
+        </h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;">
+
+          <div style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #bfdbfe;border-radius:1rem;padding:1.125rem;display:flex;align-items:flex-start;gap:0.75rem;">
+            <span style="font-size:1.75rem;flex-shrink:0;">🎲</span>
+            <div>
+              <p style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.875rem;color:#1e40af;margin-bottom:0.25rem;">Dados Matemáticos</p>
+              <p style="font-size:0.78rem;color:#3b82f6;line-height:1.4;">Determinan movimiento y retos del turno</p>
+            </div>
           </div>
 
-          <!-- Componente 2 -->
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-            <div style="font-size:2.5rem;margin-bottom:0.75rem;">🎡</div>
-            <h3 style="font-family:'Outfit',sans-serif;font-size:0.9375rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Ruleta de Retos</h3>
-            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">Una ruleta giratoria con diferentes categorías de desafíos matemáticos para poner a prueba a los jugadores.</p>
+          <div style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #bbf7d0;border-radius:1rem;padding:1.125rem;display:flex;align-items:flex-start;gap:0.75rem;">
+            <span style="font-size:1.75rem;flex-shrink:0;">🎡</span>
+            <div>
+              <p style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.875rem;color:#166534;margin-bottom:0.25rem;">Ruleta de Retos</p>
+              <p style="font-size:0.78rem;color:#16a34a;line-height:1.4;">Categorías de desafíos matemáticos</p>
+            </div>
           </div>
 
-          <!-- Componente 3 -->
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-            <div style="font-size:2.5rem;margin-bottom:0.75rem;">🃏</div>
-            <h3 style="font-family:'Outfit',sans-serif;font-size:0.9375rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Tarjetas de Ejercicios</h3>
-            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">Más de 120 tarjetas con ejercicios de fracciones, decimales y geometría en niveles progresivos de dificultad.</p>
+          <div style="background:linear-gradient(135deg,#fefce8,#fef9c3);border:1px solid #fde68a;border-radius:1rem;padding:1.125rem;display:flex;align-items:flex-start;gap:0.75rem;">
+            <span style="font-size:1.75rem;flex-shrink:0;">🃏</span>
+            <div>
+              <p style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.875rem;color:#854d0e;margin-bottom:0.25rem;">Tarjetas de Ejercicios</p>
+              <p style="font-size:0.78rem;color:#ca8a04;line-height:1.4;">+120 tarjetas en 3 niveles de dificultad</p>
+            </div>
           </div>
 
-          <!-- Componente 4 -->
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-            <div style="font-size:2.5rem;margin-bottom:0.75rem;">🗺️</div>
-            <h3 style="font-family:'Outfit',sans-serif;font-size:0.9375rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Plano Cartesiano</h3>
-            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">Tablero magnético del plano cartesiano para graficar puntos y resolver desafíos de coordenadas en tiempo real.</p>
+          <div style="background:linear-gradient(135deg,#fff7ed,#fed7aa);border:1px solid #fdba74;border-radius:1rem;padding:1.125rem;display:flex;align-items:flex-start;gap:0.75rem;">
+            <span style="font-size:1.75rem;flex-shrink:0;">🗺️</span>
+            <div>
+              <p style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.875rem;color:#9a3412;margin-bottom:0.25rem;">Plano Cartesiano</p>
+              <p style="font-size:0.78rem;color:#ea580c;line-height:1.4;">Tablero magnético de coordenadas</p>
+            </div>
           </div>
 
-          <!-- Componente 5 -->
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-            <div style="font-size:2.5rem;margin-bottom:0.75rem;">🏆</div>
-            <h3 style="font-family:'Outfit',sans-serif;font-size:0.9375rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Stickers de Logros</h3>
-            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">Sistema de recompensas con stickers coleccionables para motivar a los jugadores a seguir aprendiendo.</p>
+          <div style="background:linear-gradient(135deg,#fdf4ff,#e9d5ff);border:1px solid #d8b4fe;border-radius:1rem;padding:1.125rem;display:flex;align-items:flex-start;gap:0.75rem;">
+            <span style="font-size:1.75rem;flex-shrink:0;">🏆</span>
+            <div>
+              <p style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.875rem;color:#6b21a8;margin-bottom:0.25rem;">Stickers de Logros</p>
+              <p style="font-size:0.78rem;color:#9333ea;line-height:1.4;">Coleccionables para motivar el avance</p>
+            </div>
           </div>
 
-          <!-- Componente 6 -->
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-            <div style="font-size:2.5rem;margin-bottom:0.75rem;">♟️</div>
-            <h3 style="font-family:'Outfit',sans-serif;font-size:0.9375rem;font-weight:700;color:#0f172a;margin-bottom:0.5rem;">Juego de Mesa</h3>
-            <p style="font-size:0.8rem;color:#64748b;line-height:1.5;">Tablero principal de alta calidad con diseño temático, fichas de jugador y manual de instrucciones ilustrado.</p>
+          <div style="background:linear-gradient(135deg,#fff1f2,#ffe4e6);border:1px solid #fecdd3;border-radius:1rem;padding:1.125rem;display:flex;align-items:flex-start;gap:0.75rem;">
+            <span style="font-size:1.75rem;flex-shrink:0;">📖</span>
+            <div>
+              <p style="font-family:'Outfit',sans-serif;font-weight:700;font-size:0.875rem;color:#9f1239;margin-bottom:0.25rem;">Manual Ilustrado</p>
+              <p style="font-size:0.78rem;color:#e11d48;line-height:1.4;">Instrucciones claras con ejemplos visuales</p>
+            </div>
           </div>
 
         </div>
       </div><!-- /Panel 2 -->
+
+      <!-- ── MODAL de tablero ampliado ── -->
+      <div id="board-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.8);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:1.5rem;" onclick="if(event.target===this)closeBoardModal()">
+        <div style="background:#fff;border-radius:1.5rem;max-width:680px;width:100%;max-height:90vh;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.4);display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid #e2e8f0;">
+            <p id="board-modal-title" style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1rem;color:#0f172a;"></p>
+            <button onclick="closeBoardModal()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:#94a3b8;line-height:1;padding:0.25rem;">✕</button>
+          </div>
+          <div style="overflow:auto;flex:1;">
+            <img id="board-modal-img" src="" alt="" style="width:100%;display:block;">
+          </div>
+          <div style="padding:1rem 1.25rem;border-top:1px solid #e2e8f0;">
+            <p id="board-modal-desc" style="font-size:0.875rem;color:#475569;line-height:1.6;"></p>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        @media (max-width: 768px) {
+          #boards-track { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 480px) {
+          #boards-track { grid-template-columns: 1fr 1fr !important; gap: 0.625rem !important; }
+        }
+      </style>
+
+      <script>
+        function openBoardModal(src, title, desc) {
+          const modal = document.getElementById('board-modal');
+          document.getElementById('board-modal-img').src = src;
+          document.getElementById('board-modal-title').textContent = title;
+          document.getElementById('board-modal-desc').textContent = desc;
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(modal.firstElementChild,
+              { scale: 0.88, opacity: 0 },
+              { scale: 1, opacity: 1, duration: 0.30, ease: 'back.out(1.4)' }
+            );
+          }
+        }
+        function closeBoardModal() {
+          const modal = document.getElementById('board-modal');
+          if (typeof gsap !== 'undefined') {
+            gsap.to(modal.firstElementChild, {
+              scale: 0.88, opacity: 0, duration: 0.20,
+              onComplete: () => { modal.style.display = 'none'; document.body.style.overflow = ''; }
+            });
+          } else {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+          }
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBoardModal(); });
+      </script>
 
       <!-- Panel 3: Reseñas -->
       <div class="desc-panel">
